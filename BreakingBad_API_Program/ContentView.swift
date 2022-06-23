@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+//TODO: Add Caching
+
 struct ContentView: View {
    @StateObject var dataHandler = DataHandler()
+   @State var showDetail:Bool = false
     
     var body: some View {
         NavigationView {
@@ -19,16 +22,34 @@ struct ContentView: View {
                         VStack {
                             Text("Name: \(Character.name)").bold()
                             Text("Nickname: \(Character.nickname)").font(.subheadline)
+                            if(dataHandler.calcAge(birthday: Character.birthday) != -1){
+                                Text("Age: \(dataHandler.calcAge(birthday: Character.birthday))").font(.body)
+                                    .foregroundColor(Color.gray)
+                            } else {
+                                Text("Age: Unknown").font(.body).foregroundColor(Color.gray)
+                            }
+                            Button(action: {
+                                print("Button Pressed")
+                                self.showDetail.toggle()
+                            }, label: {
+                                Text("More Details")
+                                    .padding(2)
+                                    .background(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(lineWidth: 2)
+                                        .background()
+                                    )
+                            }).sheet(isPresented: $showDetail){
+                                CharacterDetailView(name: "\(Character.name) Details")
+                            }
                         }
-                        
-                    }
+                    }.padding()
                 }
             }
             .navigationTitle("Breaking Bad")
             .onAppear{
                 dataHandler.fetch()
             }
-            Text("Test Text")
         }
         
     }
@@ -37,5 +58,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        CharacterDetailView()
     }
 }

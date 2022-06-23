@@ -18,7 +18,7 @@ struct URLImage: View{
         if let data = data, let uiImage = UIImage(data: data) {
             Image(uiImage: uiImage)
                 .resizable()
-                .aspectRatio(contentMode : .fill)
+                .aspectRatio(contentMode : .fit)
                 .frame(width: 100, height: 100)
                 .background(Color.gray)
         } else
@@ -26,7 +26,7 @@ struct URLImage: View{
             Image(systemName: "Photo")
                 .resizable()
                 .aspectRatio(contentMode : .fit)
-                .frame(width: 130, height: 70)
+                .frame(width: 100, height: 90)
                 .background(Color.gray)
                 .onAppear{
                     fetchImage()

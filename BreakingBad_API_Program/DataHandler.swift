@@ -72,19 +72,32 @@ class DataHandler : ObservableObject
                 DispatchQueue.main.async {
                     self.characters = parsedData
                     print("updated characters data")
-                    //print(self.characters)
+                    print("Birthday: \(self.characters[0].birthday)")
                 }                
             }
             
         }
         
         task.resume()
+         //print("Age: \(calcAge(birthday: "10/17/1997"))") // testing to ensure calculations work
         
     }
     
-    func calcAge(mmDDyy:String) -> Int{
-        var ans:Int = 0
+    func calcAge(birthday:String) -> Int{
         
-        return ans
+        let birthdayClean = birthday
+        birthdayClean.replacingOccurrences(of: "-", with: "")
+        var age:Int = -1
+        let now = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        guard let birthdayDate = dateFormatter.date(from: birthdayClean) else {
+            print("Error")
+            return -1
+        }
+        let calendar = Calendar.current
+        let calcAge = calendar.dateComponents([.year], from: birthdayDate, to: now)
+        age = calcAge.year!
+        return age
     }
 }

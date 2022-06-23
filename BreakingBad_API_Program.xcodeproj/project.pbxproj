@@ -13,6 +13,7 @@
 		5AC2E0EB2864B3AA009A0CA2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AC2E0EA2864B3AA009A0CA2 /* Preview Assets.xcassets */; };
 		5AC2E0F22864B636009A0CA2 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0F12864B636009A0CA2 /* DataHandler.swift */; };
 		5AC2E0F42864DD15009A0CA2 /* URLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0F32864DD15009A0CA2 /* URLImage.swift */; };
+		5AC2E0F62864F4F1009A0CA2 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC2E0F52864F4F1009A0CA2 /* CharacterDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		5AC2E0EA2864B3AA009A0CA2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5AC2E0F12864B636009A0CA2 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		5AC2E0F32864DD15009A0CA2 /* URLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLImage.swift; sourceTree = "<group>"; };
+		5AC2E0F52864F4F1009A0CA2 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 				5AC2E0F32864DD15009A0CA2 /* URLImage.swift */,
 				5AC2E0E32864B3A8009A0CA2 /* BreakingBad_API_ProgramApp.swift */,
 				5AC2E0E52864B3A8009A0CA2 /* ContentView.swift */,
+				5AC2E0F52864F4F1009A0CA2 /* CharacterDetailView.swift */,
 				5AC2E0F12864B636009A0CA2 /* DataHandler.swift */,
 				5AC2E0E72864B3AA009A0CA2 /* Assets.xcassets */,
 				5AC2E0E92864B3AA009A0CA2 /* Preview Content */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AC2E0F62864F4F1009A0CA2 /* CharacterDetailView.swift in Sources */,
 				5AC2E0E62864B3A8009A0CA2 /* ContentView.swift in Sources */,
 				5AC2E0F22864B636009A0CA2 /* DataHandler.swift in Sources */,
 				5AC2E0E42864B3A8009A0CA2 /* BreakingBad_API_ProgramApp.swift in Sources */,
