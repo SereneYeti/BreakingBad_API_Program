@@ -19,9 +19,9 @@ struct CharacterDetailView: View {
                 Text("Current Status: \(currentCharacter.status)")
                     .font(.body).fontWeight(.bold).padding()
                 Divider()
-                //Text("Quote by \(characterQuote?.author ?? "Author Not Found") ").font(.title).padding()
-                //Text("Quote: \(characterQuote?.quote ?? "Unkown Quote")").font(.body).font(.system(size: 48)).fontWeight(.bold).padding()
-                //Text("Quote from \(characterQuote?.series ?? "Unkown Series") ").font(.subheadline).padding()
+                Text("Quote by \(currentCharacterQuotes.author) ").font(.title).padding()                
+                Text("Quote: \(currentCharacterQuotes.quote)").font(.body).font(.system(size: 48)).fontWeight(.bold).padding()
+                Text("Quote from \(currentCharacterQuotes.series) ").font(.subheadline).padding()
                 Divider()
                 
             }   .navigationTitle("Character Details")

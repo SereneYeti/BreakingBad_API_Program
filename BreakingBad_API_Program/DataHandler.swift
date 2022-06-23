@@ -61,6 +61,7 @@ struct MultiFoundQuote: Decodable{ //This struct is used for when a single autho
 }
 
 var currentCharacter:Character = Character(id: 0, name: "", nickname: "", birthday: "", img: "", portrayed: "", status: "", occupation: [])
+var currentCharacterQuotes:Quote = Quote(quote: "", author: "", series: "")
 
 class DataHandler : ObservableObject
 {
@@ -142,6 +143,7 @@ class DataHandler : ObservableObject
     }
     
     func findQuote(author:String) -> Quote{
+        //TODO: Change FindQuotes to find all quotes from an author not just the final one
         var foundQuote:Quote = Quote(quote: "", author: "", series: "")
         for quote in quotes {
             if(quote.author == author)

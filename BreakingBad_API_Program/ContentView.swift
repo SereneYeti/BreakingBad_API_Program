@@ -30,8 +30,8 @@ struct ContentView: View {
                             }
                             Button(action: {
                                 print("Button Pressed")
-                                print("Character Name: \(Character.name)")
                                 currentCharacter = Character
+                                currentCharacterQuotes = dataHandler.findQuote(author: currentCharacter.name)
                                 self.showDetail.toggle()
                             }, label: {
                                 Text("More Details")
