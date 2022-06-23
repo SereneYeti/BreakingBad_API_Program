@@ -8,20 +8,29 @@
 import SwiftUI
 
 struct CharacterDetailView: View {
-    @Environment(\.presentationMode) var presentationMode
-    @State var name:String = "Character Details"
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationView {
-            Text("Character Details")
-                .navigationTitle("\(name)")
+            VStack{                
+                Text("Name: \(currentCharacter.name )").font(.title).padding()
+                URLImage(urlString: currentCharacter.img).padding()
+                Text("Actor: \(currentCharacter.portrayed )").font(.body).fontWeight(.bold).padding()
+                Text("Current Status: \(currentCharacter.status)")
+                    .font(.body).fontWeight(.bold).padding()
+                Divider()
+                //Text("Quote by \(characterQuote?.author ?? "Author Not Found") ").font(.title).padding()
+                //Text("Quote: \(characterQuote?.quote ?? "Unkown Quote")").font(.body).font(.system(size: 48)).fontWeight(.bold).padding()
+                //Text("Quote from \(characterQuote?.series ?? "Unkown Series") ").font(.subheadline).padding()
+                Divider()
+                
+            }   .navigationTitle("Character Details")
                 .navigationBarItems(trailing: Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
+                    dismiss()
                 }, label: {
                     Text("Done").bold()
                 }))
         }
-        
     }
 }
 

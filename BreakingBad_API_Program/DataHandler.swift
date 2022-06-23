@@ -24,6 +24,12 @@ When selecting a character, a detail view should contain:
 Any info from another API:
 - quotes
 - deaths
+ 
+ id
+ quote
+ author
+ series
+ 
  */
 
 struct Character : Hashable, Decodable{
@@ -34,23 +40,41 @@ struct Character : Hashable, Decodable{
     var img:String
     var portrayed:String
     var status:String
+    var occupation:[String]
     
     enum CodingKeys: String, CodingKey{
-        case name, nickname, birthday, img, portrayed, status
+        case name, nickname, birthday, img, portrayed, status, occupation
         case id = "char_id"
     }
 }
 
+struct Quote: Decodable{
+    var quote:String
+    var author:String
+    var series:String
+}
+
+struct MultiFoundQuote: Decodable{ //This struct is used for when a single author has multiple quotes
+    var quote:[String]
+    var author:String
+    var series:String
+}
+
+var currentCharacter:Character = Character(id: 0, name: "", nickname: "", birthday: "", img: "", portrayed: "", status: "", occupation: [])
 
 class DataHandler : ObservableObject
 {
     @Published var characters: [Character] = []
     
+    @Published var quotes : [Quote] = []
+    
     var urlSession = URLSession.shared
-    var urlRequest = URLRequest(url: URL(string: "https://www.breakingbadapi.com/api/characters")!)
+    var urlRequestChar = URLRequest(url: URL(string: "https://www.breakingbadapi.com/api/characters")!)
+    var urlRequestQuote = URLRequest(url: URL(string: "https://www.breakingbadapi.com/api/quotes")!)
+    
             
     func fetch(){
-        let task = urlSession.dataTask(with: urlRequest){ data, response, error in
+        let task = urlSession.dataTask(with: urlRequestChar){ data, response, error in
             if let error = error {
                 print("Error: \(error.localizedDescription)")
                 return
@@ -83,10 +107,57 @@ class DataHandler : ObservableObject
         
     }
     
+    func fetchQuotes(){
+        print("Finding quote")
+        let taskQ = urlSession.dataTask(with: urlRequestQuote){ data, response, error in
+            if let error = error {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let data = data else {
+                return
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            
+            do{
+                guard let parsedData = try? jsonDecoder.decode([Quote].self, from: data)
+                else {
+                    print("Parsing Failed")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.quotes = parsedData
+                    print("updated quote data")
+                }
+            }
+            
+        }
+        
+        taskQ.resume()
+         //print("Age: \(calcAge(birthday: "10/17/1997"))") // testing to ensure calculations work
+        
+    }
+    
+    func findQuote(author:String) -> Quote{
+        var foundQuote:Quote = Quote(quote: "", author: "", series: "")
+        for quote in quotes {
+            if(quote.author == author)
+            {
+                foundQuote.author = quote.author
+                foundQuote.quote = quote.quote
+                foundQuote.series = quote.series
+            }
+        }
+        return foundQuote
+    }
+    
     func calcAge(birthday:String) -> Int{
         
         let birthdayClean = birthday
-        birthdayClean.replacingOccurrences(of: "-", with: "")
+        //birthdayClean.replacingOccurrences(of: "-", with: "")
         var age:Int = -1
         let now = Date()
         let dateFormatter = DateFormatter()

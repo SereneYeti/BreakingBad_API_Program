@@ -30,6 +30,8 @@ struct ContentView: View {
                             }
                             Button(action: {
                                 print("Button Pressed")
+                                print("Character Name: \(Character.name)")
+                                currentCharacter = Character
                                 self.showDetail.toggle()
                             }, label: {
                                 Text("More Details")
@@ -40,7 +42,7 @@ struct ContentView: View {
                                         .background()
                                     )
                             }).sheet(isPresented: $showDetail){
-                                CharacterDetailView(name: "\(Character.name) Details")
+                                CharacterDetailView()
                             }
                         }
                     }.padding()
@@ -49,6 +51,7 @@ struct ContentView: View {
             .navigationTitle("Breaking Bad")
             .onAppear{
                 dataHandler.fetch()
+                dataHandler.fetchQuotes()
             }
         }
         
