@@ -35,7 +35,7 @@ struct ContentView: View {
                                 self.showDetail.toggle()
                             }, label: {
                                 Text("More Details")
-                                    .padding(2)
+                                    .padding(4)
                                     .background(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(lineWidth: 2)
