@@ -61,12 +61,11 @@ struct MultiFoundQuote: Decodable{ //This struct is used for when a single autho
 }
 
 var currentCharacter:Character = Character(id: 0, name: "", nickname: "", birthday: "", img: "", portrayed: "", status: "", occupation: [])
-var currentCharacterQuotes:Quote = Quote(quote: "", author: "", series: "")
+var currentCharacterQuotes:Quote = Quote(quote: "Unkown Quote", author: "Unkown Author", series: "Unkown Series")
 
 class DataHandler : ObservableObject
 {
-    @Published var characters: [Character] = []
-    
+    @Published var characters: [Character] = []   
     @Published var quotes : [Quote] = []
     
     var urlSession = URLSession.shared
